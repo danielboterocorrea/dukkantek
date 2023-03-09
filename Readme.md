@@ -39,7 +39,7 @@ Valentina Cupac explains well this approach in the following videos:
 - https://www.youtube.com/watch?v=3wxiQB2-m2k
 - https://www.youtube.com/watch?v=IZWLnn2fNko
 
-A unit test can be just testing a method in a particular class too. When we do this kind of test is because there is a combinatory explosion. The validator I've done fit well in this specific case, so I added tests for them separately.
+A unit test can be just testing a method in a particular class too. When we do this kind of test is because there is a combinatory explosion. The validator I've done fits well in this specific case, so I added tests for them separately.
 
 What are integration tests? It tests the secondary adapters if we put it in terms of the hexagonal architecture.
 We should test not only the real implementation of the adapter but the test doubles because those test doubles are used in the unit test part, and they should behave as if it was the real implementation.
