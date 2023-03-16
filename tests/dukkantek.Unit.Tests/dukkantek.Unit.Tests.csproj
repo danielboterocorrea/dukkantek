@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\dukkantek.Api\dukkantek.Api.csproj" />
+      <ProjectReference Include="..\dukkantek.Tests.Common\dukkantek.Tests.Common.csproj" />
     </ItemGroup>
 
 </Project>

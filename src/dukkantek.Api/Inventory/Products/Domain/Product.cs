@@ -5,7 +5,7 @@ namespace dukkantek.Api.Inventory.Products.Domain;
 
 public class Product : Entity<ProductId>
 {
-    private Product(ProductId id, Name name, Barcode barcode, Description description, CategoryName categoryName, bool weighted, ProductStatus status)
+    protected Product(ProductId id, Name name, Barcode barcode, Description description, CategoryName categoryName, bool weighted, ProductStatus status)
         : base(id)
     {
         Name = name;

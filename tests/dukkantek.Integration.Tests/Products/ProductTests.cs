@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using dukkantek.Api.Infrastructure;
 using dukkantek.Api.Inventory.Products.Domain;
 using dukkantek.Api.Shared.Domain;
 using dukkantek.Tests.Common;

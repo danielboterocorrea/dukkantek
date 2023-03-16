@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  
+  api:
+    build:
+      context: ./src/dukkantek.Api
+      dockerfile: Dockerfile
+    container_name: api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel:Certificates:Default:Password=${KESTREL_CERTIFICATE_PASSWORD}
+      - ASPNETCORE_Kestrel:Certificates:Default:Path=${KESTREL_CERTIFICATE_PATH}
+    depends_on:
+      - sql-server
+    ports:
+      - "5164:80"
+      - "7299:443"
+    volumes:
+      - ${KESTREL_CERTIFICATE_FOLDER}:/https/
+    networks:
+      - internal
+        
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server
+    hostname: sql-server
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=MourStrong@Passw0rd
+    networks:
+      - internal
+  
+networks:
+  internal:
+    name: internal
+    ipam:
+      config:
+        - subnet: 172.23.0.0/24 
+        

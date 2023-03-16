@@ -1,10 +1,12 @@
 ﻿using System.Reflection;
 using dukkantek.Api.Attributes;
+using dukkantek.Api.Infrastructure;
 using dukkantek.Api.Inventory.Products.Domain;
 using dukkantek.Api.Inventory.Products.Infrastructure;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace dukkantek.Api;
 
@@ -27,7 +29,10 @@ public static class ConfigureApi
     {
         serviceCollection
             .AddMediatR(typeof(Program))
-            .AddSingleton<IProductStore, ProductStore>()
+            .AddScoped<IProductStore, ProductStore>()
+            .AddDbContextPool<InventoryContext>(options => options
+                    .UseSqlServer(configuration.GetConnectionString("SqlServer"))
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking))
             .AddFluentValidation(options =>
             {
                 options.ImplicitlyValidateChildProperties = true;
