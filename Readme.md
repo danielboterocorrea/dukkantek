@@ -78,18 +78,26 @@ The errors are communicated to the consumer in the following format for any erro
 
 ## Containerisation
 
-For the sake of time, I didn't use Docker or similar technologies
-But it should be reasonably easy to create a docker file + a docker-compose and run it
+I use Sql Server Docker image for the database
+I containerised the Api using dotnet sdk:6 alpine image from Microsoft
 
+![Containers](images/Containers.PNG)
  
 ## Databases
 
-For the sake of time, I didn't use SqlServer as asked in the Case Study, but it should be reasonably easy to pull up the SqlServer docker image and wire it up to the application.
+I used Sql Server 2022
+mcr.microsoft.com/mssql/server:2022-latest
 
+![Containers](images/SqlServerContainer.PNG)
 
 ## EF Core
 
-For the sake of time, I didn't use EF Core. It should be an implementation detail in the Case Study.
+When you execute the `./run.sh`, it will create the database and the Products table using the `InitialCreate` migration class present in the `Migrations` folder  
+
+The `./run.sh` will run EF Core commands through the Makefile to Initialise the database.
+
+This is the command used to initialise the database
+`dotnet ef database update --project src/dukkantek.Api`
 
 
 ## Monitoring & Observability
@@ -110,7 +118,7 @@ I am using mediatR in the project to decouple my application code from the top-l
 
 ## How to use the API
 
-Open it using Visual Studio or Rider
+Execute the `./run.sh`, it will create two containers and then use postman or swagger to communicate with the api via http requests
 
 ### Create products
 
